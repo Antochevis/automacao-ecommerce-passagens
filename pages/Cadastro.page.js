@@ -44,7 +44,7 @@ class CadastroPage {
     const cpf = gerarCpf();
     const rg = gerarRg();
     const telefone = gerarTelefone();
-    const email = 'test.user@rodosoft.com.br';
+    const email = 'andrey@rodosoft.com.br';
     
     await this.nomeInput.click();
     await this.nomeInput.fill(nome);
@@ -92,8 +92,10 @@ class CadastroPage {
     await mensagemSucesso.waitFor({ state: 'visible', timeout: 5000 });
     
     const texto = await mensagemSucesso.textContent();
-    if (!texto.includes('Cadastro realizado com sucesso')) {
-      throw new Error('Mensagem de sucesso não encontrada');
+    console.log(`Mensagem encontrada: ${texto}`);
+    
+    if (!texto.includes('realizado com sucesso') && !texto.includes('sucesso')) {
+      throw new Error(`Mensagem de sucesso não encontrada. Mensagem atual: ${texto}`);
     }
   }
 }

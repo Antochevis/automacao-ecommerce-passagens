@@ -10,7 +10,7 @@ Feature: Cancelamento de passagens
     And devo receber uma mensagem de confirmação
 
   @logado
-  Scenario: Cancelar por trecho (múltiplas poltronas)
+  Scenario: Cancelar por trecho - múltiplas poltronas
     Given que estou logado e tenho uma compra realizada
     When acesso meus pedidos
     And seleciono uma passagem com múltiplas poltronas

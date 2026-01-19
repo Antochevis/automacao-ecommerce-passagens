@@ -12,7 +12,6 @@ let loginPage;
 let compraPassagemPage;
 
 Before({ tags: 'not @logado and not @estudante' }, async function () {
-  // Before para cenários sem tag específica (deslogado, cadastro, etc)
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
   

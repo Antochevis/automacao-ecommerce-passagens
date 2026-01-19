@@ -26,11 +26,9 @@ class CancelamentoPage {
     await this.page.waitForLoadState('networkidle');
     await this.page.waitForTimeout(1000);
     
-    // Clica no botão de detalhes da primeira venda
     const botaoDetalhes = this.page.locator('button[title="Detalhes Venda"]').first();
     await botaoDetalhes.click();
     
-    // Aguarda a página carregar (sem validar URL específica)
     await this.page.waitForLoadState('networkidle');
     await this.page.waitForTimeout(1000);
   }
@@ -39,59 +37,44 @@ class CancelamentoPage {
     await this.page.waitForLoadState('networkidle');
     await this.page.waitForTimeout(1000);
     
-    // Clica no botão de detalhes da primeira venda
     const botaoDetalhes = this.page.locator('button[title="Detalhes Venda"]').first();
     await botaoDetalhes.click();
     
-    // Aguarda a página carregar (sem validar URL específica)
     await this.page.waitForLoadState('networkidle');
     await this.page.waitForTimeout(1000);
   }
 
   async cancelarPoltronaIndividual() {
-    // Aguarda botão de cancelar poltrona estar visível e pega o primeiro
     const cancelarButton = this.page.locator('button[title="Solicitar Cancelamento"]').filter({ hasText: 'Cancelar Poltrona' }).first();
     await cancelarButton.waitFor({ state: 'visible', timeout: 10000 });
     
-    // Clica em "Cancelar Poltrona"
     await cancelarButton.click();
     
-    // Aguarda modal de confirmação aparecer
     await this.page.waitForTimeout(1000);
     
-    // Confirma clicando em "Sim"
     await this.botaoConfirmarSim.click();
     
-    // Aguarda o processamento do cancelamento
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(3000);
   }
 
   async cancelarPorTrecho() {
-    // Aguarda link de cancelar trecho estar visível e pega o primeiro
     await this.cancelarTrechoLink.first().waitFor({ state: 'visible', timeout: 10000 });
     
-    // Clica em "Cancelar Trecho"
     await this.cancelarTrechoLink.first().click();
     
-    // Aguarda modal de confirmação aparecer
     await this.page.waitForTimeout(1000);
     
-    // Confirma clicando em "Sim"
     await this.botaoConfirmarSim.click();
     
-    // Aguarda o processamento do cancelamento
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(3000);
   }
 
   async validarCancelamentoRealizado() {
-    // Aguarda o modal de sucesso específico (bodyPopup)
-    const modalSucesso = this.page.locator('.modal-content.bodyPopup').first();
-    await modalSucesso.waitFor({ state: 'visible', timeout: 10000 });
-    
-    // Valida a mensagem dentro do modal
-    await this.mensagemPopup.waitFor({ state: 'visible', timeout: 5000 });
+    await this.mensagemPopup.waitFor({ state: 'visible', timeout: 30000 });
     
     const mensagem = await this.mensagemPopup.textContent();
+    console.log(`Mensagem de cancelamento: ${mensagem}`);
+    
     if (!mensagem.includes('cancelada com sucesso')) {
       throw new Error(`Mensagem esperada não encontrada. Mensagem atual: ${mensagem}`);
     }

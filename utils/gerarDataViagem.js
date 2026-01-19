@@ -2,14 +2,22 @@ function gerarDiaAleatorio(min = 1, max = 28) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function calcularDiaVolta(diaIda, dias = 7, ano = 2026, mes = 0) {
-  const data = new Date(ano, mes, diaIda);
-  data.setDate(data.getDate() + dias);
+function calcularDiaVolta(diaIda, dias = 7) {
+  const hoje = new Date();
+  const mesAtual = hoje.getMonth();
+  const anoAtual = hoje.getFullYear();
+  
+  // Se o dia de ida já passou no mês atual, usar próximo mês
+  const mesIda = diaIda <= hoje.getDate() ? mesAtual + 1 : mesAtual;
+  
+  const dataIda = new Date(anoAtual, mesIda, diaIda);
+  const dataVolta = new Date(dataIda);
+  dataVolta.setDate(dataVolta.getDate() + dias);
 
   return {
-    dia: data.getDate(),
-    mes: data.getMonth(),
-    ano: data.getFullYear(),
+    dia: dataVolta.getDate(),
+    mes: dataVolta.getMonth(),
+    ano: dataVolta.getFullYear(),
   };
 }
 
