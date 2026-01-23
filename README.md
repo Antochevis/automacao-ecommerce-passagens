@@ -126,7 +126,7 @@ AutomacaoPlaywright/
 └── package.json          # Dependências do projeto
 ```
 
-## 🎭 Features e Cenários (27 total)
+## Features e Cenários (27 total)
 
 ### Login (2 cenários)
 - ✅ Login com sucesso
