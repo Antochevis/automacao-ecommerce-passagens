@@ -2,22 +2,22 @@
 
 Projeto de automação de testes E2E para plataforma de compra de passagens de ônibus utilizando Playwright e Cucumber.
 
-> **⚠️ Projeto Acadêmico/Portfólio**: Este projeto é um exemplo de automação de testes para fins educacionais e de portfólio. Configure as variáveis de ambiente para apontar para seu próprio ambiente de testes.
+> ** Projeto Acadêmico/Portfólio**: Este projeto é um exemplo de automação de testes para fins educacionais e de portfólio. Configure as variáveis de ambiente para apontar para seu próprio ambiente de testes.
 
-## 🎯 Tecnologias
+## Tecnologias
 
 - **Playwright** - Framework de automação de testes
 - **Cucumber.js** - BDD (Behavior-Driven Development)
 - **Node.js** - Runtime JavaScript
 - **Page Object Model** - Padrão de design para organização dos testes
 
-## 📋 Pré-requisitos
+## Pré-requisitos
 
 - Node.js (versão 18 ou superior)
 - npm ou yarn
 - Git
 
-## 🚀 Instalação
+## Instalação
 
 Clone o repositório e instale as dependências:
 
@@ -33,7 +33,7 @@ Instale os navegadores do Playwright:
 npx playwright install
 ```
 
-## ⚙️ Configuração
+## Configuração
 
 1. **Copie o arquivo de exemplo de variáveis de ambiente:**
 
@@ -60,9 +60,9 @@ SENHA_VALIDA_ESTUDANTE=SenhaEstudante@456
 EMAIL_TESTE=seu.email@example.com
 ```
 
-> **🔒 Segurança**: Nunca compartilhe suas credenciais reais. O arquivo `.env` está no `.gitignore` e não será versionado.
+> **Segurança**: Nunca compartilhe suas credenciais reais. O arquivo `.env` está no `.gitignore` e não será versionado.
 
-## 🧪 Como rodar os testes
+##  Como rodar os testes
 
 **Rodar todos os testes:**
 
@@ -92,7 +92,7 @@ npx cucumber-js features/login.feature
 npx cucumber-js features/compra.feature
 ```
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 AutomacaoPlaywright/
@@ -171,12 +171,12 @@ AutomacaoPlaywright/
 - Ida e volta logado - apenas carbono
 - Ida e volta logado - seguro e carbono
 
-## 🏷️ Tags Disponíveis
+## Tags Disponíveis
 
 - `@logado` - Cenários que exigem autenticação prévia
 - `@estudante` - Cenários com benefício de estudante
 
-## 📊 Reports
+## Reports
 
 Após executar os testes, um relatório HTML é gerado em:
 
@@ -186,24 +186,24 @@ reports/cucumber-report.html
 
 Abra este arquivo no navegador para visualizar resultados detalhados.
 
-## ⚙️ Configurações
+## Configurações
 
 - **Headless Mode**: `false` (navegador visível)
 - **Timeout Padrão**: 60 segundos
 - **Browser**: Chromium
 - **Geração de Dados**: Automática (CPF, RG, telefone, nomes)
 
-## 🔐 Segurança
+## Segurança
 
 - ✅ Arquivo `.env` no `.gitignore`
 - ✅ URLs configuráveis via variável de ambiente
 - ✅ Credenciais não versionadas
 - ✅ `.env.example` com valores genéricos
 
-## 🤝 Contribuindo
+## Contribuindo
 
 Este é um projeto de portfólio. Sugestões e melhorias são bem-vindas!
 
-## 📄 Licença
+## Licença
 
 Este projeto é de código aberto para fins educacionais.
