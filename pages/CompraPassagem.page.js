@@ -39,7 +39,7 @@ class CompraPassagemPage {
   }
 
   async acessarPaginaPrincipal() {
-    await this.page.goto('https://ecommerce-hml-viop.passagensweb.com.br/Principal');
+    await this.page.goto(`${process.env.BASE_URL}/Principal`);
   }
 
   async fecharModalAtencao() {

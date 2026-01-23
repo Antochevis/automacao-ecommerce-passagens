@@ -1,7 +1,21 @@
 {
+  "name": "automacao-ecommerce-passagens",
+  "version": "1.0.0",
+  "description": "Automação de testes E2E para e-commerce de passagens usando Playwright e Cucumber",
+  "main": "index.js",
   "scripts": {
     "test": "cucumber-js"
   },
+  "keywords": [
+    "playwright",
+    "cucumber",
+    "bdd",
+    "e2e",
+    "automation",
+    "testing"
+  ],
+  "author": "",
+  "license": "MIT",
   "devDependencies": {
     "@cucumber/cucumber": "^12.5.0",
     "playwright": "^1.57.0"

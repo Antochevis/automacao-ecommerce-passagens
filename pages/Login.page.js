@@ -11,7 +11,7 @@ class LoginPage {
     }
 
     async acessar() {
-        await this.page.goto('https://ecommerce-hml-viop.passagensweb.com.br/Login');
+        await this.page.goto(`${process.env.BASE_URL}/Login`);
     }
 
     async preencherCredenciais(usuario, senha) {

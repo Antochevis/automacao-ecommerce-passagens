@@ -2,7 +2,7 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { LoginPage } = require('../pages/Login.page');
 require('dotenv').config();
 
-Given('que acesso a tela de login do e-commerce VIOP', async function () {
+Given('que acesso a tela de login do e-commerce', async function () {
     const loginPage = new LoginPage(this.page);
     this.loginPage = loginPage;
     await loginPage.acessar();

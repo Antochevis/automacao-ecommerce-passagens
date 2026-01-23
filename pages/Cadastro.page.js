@@ -26,7 +26,7 @@ class CadastroPage {
   }
 
   async acessarPaginaCadastro() {
-    await this.page.goto('https://ecommerce-hml-viop.passagensweb.com.br/Principal');
+    await this.page.goto(`${process.env.BASE_URL}/Principal`);
     
     try {
       const btnReiniciar = this.page.getByRole('button', { name: 'Reiniciar Sessão' });
@@ -44,7 +44,7 @@ class CadastroPage {
     const cpf = gerarCpf();
     const rg = gerarRg();
     const telefone = gerarTelefone();
-    const email = 'andrey@rodosoft.com.br';
+    const email = process.env.EMAIL_TESTE || 'usuario.teste@example.com';
     
     await this.nomeInput.click();
     await this.nomeInput.fill(nome);
@@ -70,13 +70,13 @@ class CadastroPage {
     await this.dataNascimentoInput.fill('10/10/2000');
     
     await this.senhaInput.click();
-    await this.senhaInput.fill('Rodosoft@147');
+    await this.senhaInput.fill(process.env.SENHA_VALIDA || 'SenhaSegura@123');
     
     await this.confirmarSenhaInput.click();
-    await this.confirmarSenhaInput.fill('Rodosoft@147');
+    await this.confirmarSenhaInput.fill(process.env.SENHA_VALIDA || 'SenhaSegura@123');
     
     await this.cepInput.click();
-    await this.cepInput.fill('93295260');
+    await this.cepInput.fill('01310100'); // CEP genérico de exemplo
     
     await this.page.waitForTimeout(1000);
   }

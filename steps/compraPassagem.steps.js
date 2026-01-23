@@ -60,7 +60,7 @@ When('informo os dados do comprador', async function () {
 
   await this.compraPassagemPage.preencherDadosComprador(
     nome,
-    'andrey@rodosoft.com.br',
+    process.env.EMAIL_TESTE || 'usuario.teste@example.com',
     cpf
   );
   
