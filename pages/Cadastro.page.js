@@ -61,8 +61,7 @@ class CadastroPage {
     await this.confirmarEmailInput.click();
     await this.confirmarEmailInput.fill(email);
     
-    await this.tipoTelefoneSelect.selectOption('1'); // Celular
-    
+    await this.tipoTelefoneSelect.selectOption('1');
     await this.telefoneInput.click();
     await this.telefoneInput.fill(telefone);
     
@@ -76,7 +75,7 @@ class CadastroPage {
     await this.confirmarSenhaInput.fill(process.env.SENHA_VALIDA || 'SenhaSegura@123');
     
     await this.cepInput.click();
-    await this.cepInput.fill('01310100'); // CEP genérico de exemplo
+    await this.cepInput.fill('01310100');
     
     await this.page.waitForTimeout(1000);
   }

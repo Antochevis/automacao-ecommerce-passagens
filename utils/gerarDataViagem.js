@@ -7,7 +7,6 @@ function calcularDiaVolta(diaIda, dias = 7) {
   const mesAtual = hoje.getMonth();
   const anoAtual = hoje.getFullYear();
   
-  // Se o dia de ida já passou no mês atual, usar próximo mês
   const mesIda = diaIda <= hoje.getDate() ? mesAtual + 1 : mesAtual;
   
   const dataIda = new Date(anoAtual, mesIda, diaIda);

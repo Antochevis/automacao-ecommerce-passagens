@@ -62,13 +62,11 @@ class CompraPassagemPage {
     await this.destinoInput.fill('santa rosa');
     await this.page.getByText('Santa Rosa - RS').click();
 
-    // Aguarda o calendário estar pronto
     await this.page.waitForSelector('td.day', { timeout: 10000 });
     await this.page.waitForTimeout(1000);
 
     const diaAleatorio = gerarDiaAleatorio();
     
-    // Retry para encontrar o dia
     let tentativas = 0;
     while (tentativas < 3) {
       try {
@@ -268,7 +266,6 @@ class CompraPassagemPage {
 
 
   async selecionarViagemEPoltronaIda() {
-    // Aguarda o carregamento das viagens
     await this.page.waitForSelector('[id^="btnCarregaMapa-"]', { timeout: 15000 }).catch(() => {});
     await this.page.waitForTimeout(2000);
 
@@ -312,7 +309,6 @@ class CompraPassagemPage {
   }
 
   async selecionarViagemEPoltronaVolta() {
-    // Aguarda o carregamento das viagens
     await this.page.waitForSelector('[id^="btnCarregaMapa-"]', { timeout: 15000 }).catch(() => {});
     await this.page.waitForTimeout(2000);
 

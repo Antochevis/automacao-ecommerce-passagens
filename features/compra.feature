@@ -1,7 +1,5 @@
 Feature: Compra de Passagens
 
-  # ========== COMPRAS DESLOGADO ==========
-
   Scenario: Compra deslogado - básica
     Given que acesso a página principal do e-commerce
     When realizo a busca por uma passagem
@@ -45,8 +43,6 @@ Feature: Compra de Passagens
     And informo os dados do passageiro
     And realizo o pagamento com cartão de crédito
     Then a compra deve ser finalizada com sucesso
-
-  # ========== COMPRAS LOGADO ==========
 
   @logado
   Scenario: Compra logado - básica
@@ -92,8 +88,6 @@ Feature: Compra de Passagens
     And realizo o pagamento com cartão de crédito
     Then a compra deve ser finalizada com sucesso
 
-  # ========== COMPRAS ESTUDANTE ==========
-
   @estudante
   Scenario: Compra estudante - básica
     Given que acesso a página principal do e-commerce
@@ -137,8 +131,6 @@ Feature: Compra de Passagens
     And uso os dados do comprador para o passageiro e seleciono sou estudante
     And realizo o pagamento com cartão de crédito
     Then a compra deve ser finalizada com sucesso
-
-  # ========== IDA E VOLTA DESLOGADO ==========
 
   Scenario: Ida e volta deslogado - básica
     Given que acesso a página principal do e-commerce
@@ -187,8 +179,6 @@ Feature: Compra de Passagens
     And informo os dados do passageiro
     And realizo o pagamento com cartão de crédito
     Then a compra deve ser finalizada com sucesso
-
-  # ========== IDA E VOLTA LOGADO ==========
 
   @logado
   Scenario: Ida e volta logado - básica
