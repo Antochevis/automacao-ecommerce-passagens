@@ -69,7 +69,7 @@ Before('@estudante', async function () {
   this.compraPassagemPage = compraPassagemPage;
 });
 
-Before('@admin', async function () {
+Before('@admin and not @seguro-ativo and not @seguro-inativo', async function () {
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
   
@@ -100,7 +100,10 @@ Before('@admin and @seguro-inativo', async function () {
 });
 
 After(async function () {
+  if (this.page) {
+    await this.page.close().catch(() => {});
+  }
   if (this.browser) {
-    await this.browser.close();
+    await this.browser.close().catch(() => {});
   }
 });

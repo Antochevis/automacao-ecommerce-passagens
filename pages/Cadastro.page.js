@@ -91,7 +91,6 @@ class CadastroPage {
     await mensagemSucesso.waitFor({ state: 'visible', timeout: 5000 });
     
     const texto = await mensagemSucesso.textContent();
-    console.log(`Mensagem encontrada: ${texto}`);
     
     if (!texto.includes('realizado com sucesso') && !texto.includes('sucesso')) {
       throw new Error(`Mensagem de sucesso não encontrada. Mensagem atual: ${texto}`);

@@ -73,7 +73,6 @@ class CancelamentoPage {
     await this.mensagemPopup.waitFor({ state: 'visible', timeout: 30000 });
     
     const mensagem = await this.mensagemPopup.textContent();
-    console.log(`Mensagem de cancelamento: ${mensagem}`);
     
     if (!mensagem.includes('cancelada com sucesso')) {
       throw new Error(`Mensagem esperada não encontrada. Mensagem atual: ${mensagem}`);
@@ -88,14 +87,12 @@ class CancelamentoPage {
     await this.mensagemPopup.waitFor({ state: 'visible', timeout: 5000 });
     
     const mensagem = await this.mensagemPopup.textContent();
-    console.log(`Mensagem de confirmação: ${mensagem}`);
   }
 
   async validarMensagemReembolso() {
     await this.mensagemPopup.waitFor({ state: 'visible', timeout: 5000 });
     
     const mensagem = await this.mensagemPopup.textContent();
-    console.log(`Mensagem de reembolso: ${mensagem}`);
   }
 }
 
