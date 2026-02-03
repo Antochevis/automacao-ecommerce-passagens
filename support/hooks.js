@@ -2,6 +2,7 @@ const { setDefaultTimeout, Before, After } = require('@cucumber/cucumber');
 const { chromium } = require('playwright');
 const { LoginPage } = require('../pages/Login.page');
 const { CompraPassagemPage } = require('../pages/CompraPassagem.page');
+const { setupAdminAuth } = require('./admin-auth');
 require('dotenv').config();
 
 setDefaultTimeout(60 * 1000);
@@ -11,7 +12,7 @@ let page;
 let loginPage;
 let compraPassagemPage;
 
-Before({ tags: 'not @logado and not @estudante' }, async function () {
+Before({ tags: 'not @logado and not @estudante and not @admin' }, async function () {
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
   
@@ -66,6 +67,16 @@ Before('@estudante', async function () {
   this.page = page;
   this.browser = browser;
   this.compraPassagemPage = compraPassagemPage;
+});
+
+Before('@admin', async function () {
+  browser = await chromium.launch({ headless: false });
+  page = await browser.newPage();
+  
+  await setupAdminAuth(page);
+  
+  this.page = page;
+  this.browser = browser;
 });
 
 After(async function () {
