@@ -12,6 +12,12 @@ let page;
 let loginPage;
 let compraPassagemPage;
 
+Before(async function (scenario) {
+  console.log(`\n${'='.repeat(20)}`);
+  console.log(`CENARIO: ${scenario.pickle.name}`);
+  console.log(`${'='.repeat(20)}\n`);
+});
+
 Before({ tags: 'not @logado and not @estudante and not @admin' }, async function () {
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
@@ -83,7 +89,7 @@ Before('@admin and @seguro-ativo', async function () {
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
   
-  await setupAdminAuth(page, 1); // 1 = seguro ativo
+  await setupAdminAuth(page, 1);
   
   this.page = page;
   this.browser = browser;
@@ -93,17 +99,24 @@ Before('@admin and @seguro-inativo', async function () {
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
   
-  await setupAdminAuth(page, 0); // 0 = seguro inativo
-  
+  await setupAdminAuth(page, 0);
+
   this.page = page;
   this.browser = browser;
 });
 
 After(async function () {
-  if (this.page) {
-    await this.page.close().catch(() => {});
-  }
-  if (this.browser) {
-    await this.browser.close().catch(() => {});
+  try {
+    if (this.browser) {
+      const contexts = await this.browser.contexts();
+      for (const context of contexts) {
+        const pages = await context.pages();
+        for (const page of pages) {
+          await page.close();
+        }
+      }
+      await this.browser.close();
+    }
+  } catch (error) {
   }
 });

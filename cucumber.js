@@ -6,6 +6,7 @@ module.exports = {
             'support/**/*.js'
         ],
         publishQuiet: true,
+        parallel: 1,
         format: [
             'progress-bar',
             'html:reports/cucumber-report.html'
@@ -18,6 +19,7 @@ module.exports = {
             'support/**/*.js'
         ],
         publishQuiet: true,
+        parallel: 1,
         format: [
             'progress-bar',
             'html:reports/cucumber-report.html'
