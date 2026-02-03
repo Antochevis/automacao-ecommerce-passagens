@@ -50,6 +50,14 @@ When('seleciono o seguro', async function () {
   await this.compraPassagemPage.selecionarSeguro();
 });
 
+When('desmarco o seguro', async function () {
+  await this.page.getByRole('checkbox', { name: 'Quero viajar com mais seguran' }).uncheck();
+});
+
+When('clico em continuar sem seguro', async function () {
+  await this.page.getByRole('button', { name: 'VIAJAR SEM SEGURO' }).click();
+});
+
 When('seleciono compensação de carbono', async function () {
   await this.compraPassagemPage.selecionarCompensacaoCarbono();
 });

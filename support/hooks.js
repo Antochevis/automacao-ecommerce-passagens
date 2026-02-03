@@ -79,6 +79,26 @@ Before('@admin', async function () {
   this.browser = browser;
 });
 
+Before('@admin and @seguro-ativo', async function () {
+  browser = await chromium.launch({ headless: false });
+  page = await browser.newPage();
+  
+  await setupAdminAuth(page, 1); // 1 = seguro ativo
+  
+  this.page = page;
+  this.browser = browser;
+});
+
+Before('@admin and @seguro-inativo', async function () {
+  browser = await chromium.launch({ headless: false });
+  page = await browser.newPage();
+  
+  await setupAdminAuth(page, 0); // 0 = seguro inativo
+  
+  this.page = page;
+  this.browser = browser;
+});
+
 After(async function () {
   if (this.browser) {
     await this.browser.close();

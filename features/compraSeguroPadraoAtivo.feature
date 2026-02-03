@@ -1,5 +1,5 @@
-@admin @seguro-inativo
-Feature: Compra de Passagens
+@admin @seguro-ativo
+Feature: Compra de Passagens com Seguro Padrão Ativo
 
   Scenario: Compra deslogado - básica
     Given que acesso a página principal do e-commerce
@@ -16,7 +16,6 @@ Feature: Compra de Passagens
     When realizo a busca por uma passagem
     And seleciono uma viagem disponível
     And seleciono uma poltrona comum
-    And seleciono o seguro
     And informo os dados do comprador
     And informo os dados do passageiro
     And realizo o pagamento com cartão de crédito
@@ -27,6 +26,8 @@ Feature: Compra de Passagens
     When realizo a busca por uma passagem
     And seleciono uma viagem disponível
     And seleciono uma poltrona comum
+    And desmarco o seguro
+    And clico em continuar sem seguro
     And seleciono compensação de carbono
     And informo os dados do comprador
     And informo os dados do passageiro
@@ -36,7 +37,6 @@ Feature: Compra de Passagens
   Scenario: Compra deslogado - seguro e carbono
     Given que acesso a página principal do e-commerce
     When realizo a busca por uma passagem
-    And seleciono uma viagem disponível
     And seleciono uma poltrona comum
     And seleciono o seguro
     And seleciono compensação de carbono
@@ -61,7 +61,6 @@ Feature: Compra de Passagens
     When realizo a busca por uma passagem
     And seleciono uma viagem disponível
     And seleciono uma poltrona comum
-    And seleciono o seguro
     And informo os dados do passageiro
     And realizo o pagamento com cartão de crédito
     Then a compra deve ser finalizada com sucesso
@@ -72,6 +71,8 @@ Feature: Compra de Passagens
     When realizo a busca por uma passagem
     And seleciono uma viagem disponível
     And seleciono uma poltrona comum
+    And desmarco o seguro
+    And clico em continuar sem seguro
     And seleciono compensação de carbono
     And informo os dados do passageiro
     And realizo o pagamento com cartão de crédito
@@ -81,7 +82,6 @@ Feature: Compra de Passagens
   Scenario: Compra logado - seguro e carbono
     Given que acesso a página principal do e-commerce
     When realizo a busca por uma passagem
-    And seleciono uma viagem disponível
     And seleciono uma poltrona comum
     And seleciono o seguro
     And seleciono compensação de carbono
@@ -105,7 +105,6 @@ Feature: Compra de Passagens
     When realizo a busca por uma passagem
     And seleciono uma viagem disponível
     And seleciono uma poltrona comum
-    And seleciono o seguro
     And uso os dados do comprador para o passageiro e seleciono sou estudante
     And realizo o pagamento com cartão de crédito
     Then a compra deve ser finalizada com sucesso
@@ -116,6 +115,8 @@ Feature: Compra de Passagens
     When realizo a busca por uma passagem
     And seleciono uma viagem disponível
     And seleciono uma poltrona comum
+    And desmarco o seguro
+    And clico em continuar sem seguro
     And seleciono compensação de carbono
     And uso os dados do comprador para o passageiro e seleciono sou estudante
     And realizo o pagamento com cartão de crédito
@@ -125,7 +126,6 @@ Feature: Compra de Passagens
   Scenario: Compra estudante - seguro e carbono
     Given que acesso a página principal do e-commerce
     When realizo a busca por uma passagem
-    And seleciono uma viagem disponível
     And seleciono uma poltrona comum
     And seleciono o seguro
     And seleciono compensação de carbono
@@ -150,7 +150,6 @@ Feature: Compra de Passagens
     And busco uma passagem ida e volta
     And seleciono uma viagem e poltrona na ida
     And seleciono uma viagem e poltrona na volta
-    And seleciono o seguro
     And informo os dados do comprador
     And informo os dados do passageiro
     And realizo o pagamento com cartão de crédito
@@ -162,6 +161,8 @@ Feature: Compra de Passagens
     And busco uma passagem ida e volta
     And seleciono uma viagem e poltrona na ida
     And seleciono uma viagem e poltrona na volta
+    And desmarco o seguro
+    And clico em continuar sem seguro
     And seleciono compensação de carbono
     And informo os dados do comprador
     And informo os dados do passageiro
@@ -172,7 +173,6 @@ Feature: Compra de Passagens
     Given que acesso a página principal do e-commerce
     When seleciono a opção ida e volta
     And busco uma passagem ida e volta
-    And seleciono uma viagem e poltrona na ida
     And seleciono uma viagem e poltrona na volta
     And seleciono o seguro
     And seleciono compensação de carbono
@@ -200,7 +200,6 @@ Feature: Compra de Passagens
     And seleciono uma viagem e poltrona na ida
     And seleciono uma viagem e poltrona na volta
     And seleciono o seguro
-    And informo os dados do passageiro
     And realizo o pagamento com cartão de crédito
     Then a compra deve ser finalizada com sucesso
 
@@ -213,6 +212,8 @@ Feature: Compra de Passagens
     And seleciono uma viagem e poltrona na volta
     And seleciono compensação de carbono
     And informo os dados do passageiro
+    And desmarco o seguro
+    And clico em continuar sem seguro
     And realizo o pagamento com cartão de crédito
     Then a compra deve ser finalizada com sucesso
 
@@ -222,7 +223,6 @@ Feature: Compra de Passagens
     When seleciono a opção ida e volta
     And busco uma passagem ida e volta
     And seleciono uma viagem e poltrona na ida
-    And seleciono uma viagem e poltrona na volta
     And seleciono o seguro
     And seleciono compensação de carbono
     And informo os dados do passageiro
