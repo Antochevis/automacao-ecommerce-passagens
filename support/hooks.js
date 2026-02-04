@@ -19,44 +19,24 @@ Before(async function (scenario) {
   console.log(`${'='.repeat(20)}\n`);
 });
 
-// Setup Admin UMA VEZ por feature - executa apenas se @admin está presente
 Before({ tags: '@admin' }, async function (scenario) {
   const featureName = scenario.gherkinDocument?.feature?.name || '';
-  
-  // Verifica se já fez setup para esta feature específica
-  if (lastAdminFeature === featureName) {
-    console.log('[Admin Setup] Já foi configurado para esta feature');
-    return;
-  }
-  
-  // Detecta qual tipo de seguro configurar baseado na tag
+    
   const hasSeguroAtivo = scenario.pickle.tags.some(tag => tag.name === '@seguro-ativo');
   const hasSeguroInativo = scenario.pickle.tags.some(tag => tag.name === '@seguro-inativo');
   
   const seguroValue = hasSeguroAtivo ? 1 : (hasSeguroInativo ? 0 : null);
-  
-  if (seguroValue === null) {
-    console.log('[Admin Setup] Nenhuma tag de seguro encontrada, pulando setup');
-    return;
-  }
-  
-  console.log(`\n========================================`);
-  console.log(`Setup Admin: Configurando SEGURO ${hasSeguroAtivo ? 'ATIVO' : 'INATIVO'}`);
-  console.log(`========================================\n`);
   
   const adminBrowser = await chromium.launch({ headless: false });
   const adminPage = await adminBrowser.newPage();
   
   try {
     await setupAdminAuth(adminPage, seguroValue);
-    console.log('[Admin Setup] ✅ Setup concluído com sucesso');
   } catch (error) {
-    console.error('[Admin Setup] ❌ Erro ao configurar admin:', error.message);
   } finally {
     await adminPage.close();
     await adminBrowser.close();
   }
-  
   lastAdminFeature = featureName;
 });
 
