@@ -11,8 +11,7 @@ let browser;
 let page;
 let loginPage;
 let compraPassagemPage;
-let adminSetupDone = false;
-let lastFeatureName = '';
+let lastAdminFeature = '';
 
 Before(async function (scenario) {
   console.log(`\n${'='.repeat(20)}`);
@@ -22,10 +21,10 @@ Before(async function (scenario) {
 
 // Setup Admin UMA VEZ por feature - executa apenas se @admin está presente
 Before({ tags: '@admin' }, async function (scenario) {
-  const featureUri = scenario.gherkinDocument?.feature?.uri || '';
+  const featureName = scenario.gherkinDocument?.feature?.name || '';
   
-  // Verifica se já fez setup para esta feature
-  if (adminSetupDone && lastFeatureName === featureUri) {
+  // Verifica se já fez setup para esta feature específica
+  if (lastAdminFeature === featureName) {
     console.log('[Admin Setup] Já foi configurado para esta feature');
     return;
   }
@@ -58,8 +57,7 @@ Before({ tags: '@admin' }, async function (scenario) {
     await adminBrowser.close();
   }
   
-  adminSetupDone = true;
-  lastFeatureName = featureUri;
+  lastAdminFeature = featureName;
 });
 
 Before({ tags: 'not @logado and not @estudante and not @admin' }, async function () {
@@ -119,32 +117,10 @@ Before('@estudante', async function () {
   this.compraPassagemPage = compraPassagemPage;
 });
 
-Before('@admin and not @seguro-ativo and not @seguro-inativo', async function () {
+Before('@admin', async function () {
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
   
-  await setupAdminAuth(page);
-  
-  this.page = page;
-  this.browser = browser;
-});
-
-Before('@admin and @seguro-ativo', async function () {
-  browser = await chromium.launch({ headless: false });
-  page = await browser.newPage();
-  
-  await setupAdminAuth(page, 1);
-  
-  this.page = page;
-  this.browser = browser;
-});
-
-Before('@admin and @seguro-inativo', async function () {
-  browser = await chromium.launch({ headless: false });
-  page = await browser.newPage();
-  
-  await setupAdminAuth(page, 0);
-
   this.page = page;
   this.browser = browser;
 });
