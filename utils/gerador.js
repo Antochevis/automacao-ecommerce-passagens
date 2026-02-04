@@ -1,4 +1,3 @@
-// CPF Generator
 function gerarCpf() {
   const cpf = [];
 
@@ -24,7 +23,6 @@ function calcularDigito(cpf) {
   return resto < 2 ? 0 : 11 - resto;
 }
 
-// Name Generator
 function gerarNomeCompleto() {
   const nomes = [
     'Joao', 'Maria', 'Carlos', 'Ana', 'Pedro', 'Juliana',
@@ -45,13 +43,11 @@ function gerarNomeCompleto() {
   return `${nome} ${sobrenome}`;
 }
 
-// RG Generator
 function gerarRg() {
   const rg = Array.from({ length: 9 }, () => Math.floor(Math.random() * 10)).join('');
   return rg;
 }
 
-// Telefone Generator
 function gerarTelefone() {
   const ddd = Math.floor(Math.random() * 90) + 10;
   const numero = Math.floor(100000000 + Math.random() * 900000000);
@@ -59,7 +55,6 @@ function gerarTelefone() {
   return `${ddd}${numero}`;
 }
 
-// Day Generators
 function gerarDiaAleatorio(min = 1, max = 28) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -87,6 +82,22 @@ function precisaIrParaProximoMes(dia) {
   return dia <= hoje;
 }
 
+function gerarCep() {
+  const cepsValidos = [
+    '20040020',
+    '01310100',
+    '30130010',
+    '40015290',
+    '50010902',
+    '60060100',
+    '70040902',
+    '80010000',
+    '90010160',
+    '13015020' 
+  ];
+  return cepsValidos[Math.floor(Math.random() * cepsValidos.length)];
+}
+
 module.exports = {
   gerarCpf,
   gerarNomeCompleto,
@@ -95,4 +106,5 @@ module.exports = {
   gerarDiaAleatorio,
   calcularDiaVolta,
   precisaIrParaProximoMes,
+  gerarCep,
 };

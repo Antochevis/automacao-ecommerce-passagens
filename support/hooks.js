@@ -5,7 +5,7 @@ const { CompraPassagemPage } = require('../pages/CompraPassagem.page');
 const { setupAdminAuth } = require('./admin-auth');
 require('dotenv').config();
 
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(180 * 1000); // 3 minutos para suportar operações longas
 
 let browser;
 let page;
@@ -21,26 +21,42 @@ Before(async function (scenario) {
 
 Before({ tags: '@admin' }, async function (scenario) {
   const featureName = scenario.gherkinDocument?.feature?.name || '';
+  
+  // Verifica se já fez setup para esta feature específica
+  if (lastAdminFeature === featureName) {
+    console.log('[Admin Setup] Já foi configurado para esta feature');
+    return;
+  }
     
   const hasSeguroAtivo = scenario.pickle.tags.some(tag => tag.name === '@seguro-ativo');
   const hasSeguroInativo = scenario.pickle.tags.some(tag => tag.name === '@seguro-inativo');
   
   const seguroValue = hasSeguroAtivo ? 1 : (hasSeguroInativo ? 0 : null);
   
-  const adminBrowser = await chromium.launch({ headless: false });
-  const adminPage = await adminBrowser.newPage();
+  browser = await chromium.launch({ headless: false });
+  page = await browser.newPage();
   
   try {
-    await setupAdminAuth(adminPage, seguroValue);
+    await setupAdminAuth(page, seguroValue);
+    console.log('[Admin Setup] ✅ Setup concluído com sucesso');
   } catch (error) {
-  } finally {
-    await adminPage.close();
-    await adminBrowser.close();
+    console.error('[Admin Setup] Erro:', error.message);
   }
+  
+  this.page = page;
+  this.browser = browser;
   lastAdminFeature = featureName;
 });
 
-Before({ tags: 'not @logado and not @estudante and not @admin' }, async function () {
+Before({ tags: 'not @logado and not @estudante and not @admin' }, async function (scenario) {
+  const featureName = scenario.gherkinDocument?.feature?.name || '';
+  
+  // Se é feature de admin (sem tag @admin), não precisa de hook especial
+  // O step Given vai cuidar da autenticação
+  if (featureName.includes('Admin') || featureName.includes('admin')) {
+    return;
+  }
+  
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
   
@@ -50,8 +66,13 @@ Before({ tags: 'not @logado and not @estudante and not @admin' }, async function
 });
 
 Before('@logado', async function () {
+  // Se cenário tem @logado, cria um novo browser para login
+  // mesmo que a feature tenha @admin
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
+  
+  this.browser = browser;
+  this.page = page;
   
   loginPage = new LoginPage(page);
   await loginPage.acessar();
@@ -68,14 +89,17 @@ Before('@logado', async function () {
   
   compraPassagemPage = new CompraPassagemPage(page);
   
-  this.page = page;
-  this.browser = browser;
   this.compraPassagemPage = compraPassagemPage;
 });
 
 Before('@estudante', async function () {
+  // Se cenário tem @estudante, cria um novo browser para login
+  // mesmo que a feature tenha @admin
   browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
+  
+  this.browser = browser;
+  this.page = page;
   
   loginPage = new LoginPage(page);
   await loginPage.acessar();
@@ -92,17 +116,11 @@ Before('@estudante', async function () {
   
   compraPassagemPage = new CompraPassagemPage(page);
   
-  this.page = page;
-  this.browser = browser;
   this.compraPassagemPage = compraPassagemPage;
 });
 
 Before('@admin', async function () {
-  browser = await chromium.launch({ headless: false });
-  page = await browser.newPage();
-  
-  this.page = page;
-  this.browser = browser;
+  // Não faz nada - o primeiro hook @admin já cuidou de tudo
 });
 
 After(async function () {

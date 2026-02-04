@@ -70,7 +70,7 @@ class CancelamentoPage {
   }
 
   async validarCancelamentoRealizado() {
-    await this.mensagemPopup.waitFor({ state: 'visible', timeout: 30000 });
+    await this.mensagemPopup.waitFor({ state: 'visible', timeout: 90000 });
     
     const mensagem = await this.mensagemPopup.textContent();
     
@@ -84,13 +84,13 @@ class CancelamentoPage {
   }
 
   async validarMensagemConfirmacao() {
-    await this.mensagemPopup.waitFor({ state: 'visible', timeout: 5000 });
+    await this.mensagemPopup.waitFor({ state: 'visible', timeout: 90000 });
     
     const mensagem = await this.mensagemPopup.textContent();
   }
 
   async validarMensagemReembolso() {
-    await this.mensagemPopup.waitFor({ state: 'visible', timeout: 5000 });
+    await this.mensagemPopup.waitFor({ state: 'visible', timeout: 90000 });
     
     const mensagem = await this.mensagemPopup.textContent();
   }

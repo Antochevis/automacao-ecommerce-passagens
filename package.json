@@ -4,7 +4,9 @@
   "description": "Automação de testes E2E para e-commerce de passagens usando Playwright e Cucumber",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js"
+    "test": "cucumber-js",
+    "feature": "cucumber-js",
+    "feature:dry": "cucumber-js --dry-run"
   },
   "keywords": [
     "playwright",

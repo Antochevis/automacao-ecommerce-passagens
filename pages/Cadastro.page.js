@@ -1,4 +1,4 @@
-const { gerarNomeCompleto, gerarCpf, gerarRg, gerarTelefone } = require('../utils/gerador');
+const { gerarNomeCompleto, gerarCpf, gerarRg, gerarTelefone, gerarCep } = require('../utils/gerador');
 
 class CadastroPage {
   constructor(page) {
@@ -72,7 +72,7 @@ class CadastroPage {
     await this.confirmarSenhaInput.fill(process.env.SENHA_VALIDA || 'SenhaSegura@123');
     
     await this.cepInput.click();
-    await this.cepInput.fill('01310100');
+    await this.cepInput.fill(gerarCep());
     
     await this.page.waitForTimeout(1000);
   }

@@ -1,4 +1,3 @@
-@admin @setup
 Feature: Setup de Autenticação do Admin
 
   Scenario: Autenticar no admin com 2FA
