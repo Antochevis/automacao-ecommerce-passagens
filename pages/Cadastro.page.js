@@ -1,7 +1,4 @@
-const { gerarNomeCompleto } = require('../utils/gerarNome');
-const { gerarCpf } = require('../utils/gerarCpf');
-const { gerarRg } = require('../utils/gerarRg');
-const { gerarTelefone } = require('../utils/gerarTelefone');
+const { gerarNomeCompleto, gerarCpf, gerarRg, gerarTelefone } = require('../utils/gerador');
 
 class CadastroPage {
   constructor(page) {

@@ -1,12 +1,11 @@
-const { gerarNomeCompleto } = require('../utils/gerarNome');
-const { gerarTelefone } = require('../utils/gerarTelefone');
-const { gerarRg } = require('../utils/gerarRg');
-
 const {
+  gerarNomeCompleto,
+  gerarTelefone,
+  gerarRg,
   gerarDiaAleatorio,
   calcularDiaVolta,
   precisaIrParaProximoMes,
-} = require('../utils/gerarDataViagem');
+} = require('../utils/gerador');
 
 
 class CompraPassagemPage {

@@ -1,9 +1,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { chromium } = require('playwright');
 const { CompraPassagemPage } = require('../pages/CompraPassagem.page');
-
-const { gerarCpf } = require('../utils/gerarCpf');
-const { gerarNomeCompleto } = require('../utils/gerarNome');
+const { gerarCpf, gerarNomeCompleto } = require('../utils/gerador');
 
 let browser;
 let context;
