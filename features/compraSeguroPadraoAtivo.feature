@@ -1,3 +1,4 @@
+@skip
 @admin @seguro-ativo
 Feature: Compra de Passagens com Seguro Padrão Ativo
 

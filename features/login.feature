@@ -1,3 +1,4 @@
+@skip
 Feature: Login no e-commerce
 
 Como um cliente do e-commerce

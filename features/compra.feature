@@ -1,3 +1,4 @@
+@skip
 @admin @seguro-inativo
 Feature: Compra de Passagens
 

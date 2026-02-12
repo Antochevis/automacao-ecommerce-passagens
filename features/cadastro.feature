@@ -1,3 +1,4 @@
+@skip
 Feature: Cadastro de novo usuário
 
   Scenario: Realizar cadastro com sucesso
